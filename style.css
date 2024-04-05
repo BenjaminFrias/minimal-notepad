@@ -14,13 +14,9 @@
 
 textarea {
     position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    margin: 0 auto;
     box-sizing: border-box;
-    padding: 100px 0;
-    width: 70%;
+    padding: 15vh 20%;
+    width: 100%;
     min-height: 100vh;
     font-size: 1.1rem;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
@@ -28,8 +24,10 @@ textarea {
     outline: 0px none transparent;
     resize: none;
     border: none;
+    background: transparent;
     color: var(--dark-gray);
     line-height: 2.2rem;
+    cursor: default;
 }
 
 /* width */
