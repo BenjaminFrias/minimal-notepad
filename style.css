@@ -50,13 +50,37 @@ textarea {
 
 /* BURGUER */
 
+.arrow svg {
+    height: 100%;
+    width: 100%;
+    fill: var(--gray);
+    transition: all 0.3s;
+}
+
 .arrow {
     z-index: 3;
     position: absolute;
     top: 15px;
     left: 15px;
+    height: 25px;
+    width: 25px;
     border: none;
-    background: transparent;
+    background-color: transparent;
+    border-radius: 15px;
+}
+
+.arrow svg:hover {
+    fill: var(--dark-gray);
+    scale: 1.1;
+}
+
+.arrow[aria-expanded="false"] {
+    transition: all 0.3s;
+}
+
+.arrow[aria-expanded="true"] {
+    transition: all 0.3s;
+    rotate: 180deg;
 }
 
 /* NAV */
@@ -87,12 +111,12 @@ nav {
     top: 15vh;
 }
 
-nav[data-open="true"] {
+nav[aria-expanded="true"] {
+    transition: all 0.5s ease;
     left: 2vh;
-    transition: all 0.5 ease-in-out;
 }
 
-nav[data-open="false"] {
+nav[aria-expanded="false"] {
     left: -15vh;
-    transition: all 0.5 ease-in-out;
+    transition: all 0.5s ease;
 }
