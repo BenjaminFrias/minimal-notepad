@@ -17,18 +17,78 @@
             </svg>
         </button>
         <div class="settings">
-            <nav aria-expanded="false">
+            <nav>
                 <ul>
-                    <li class="item-list 1"><button>Word Limit</button></li>
-                    <li class="item-list 2"><button>Time Limit</button></li>
-                    <li class="item-list 3"><button>Full width</button></li>
-                    <li class="item-list 4"><button>Font</button></li>
-                    <li class="item-list 5"><button>Lock page</button></li>
-                    <li class="item-list 6"><button>Save</button></li>
+                    <li class="word-limit-btn">
+                        <button data-tooltip="Word limit">
+                            <?xml version="1.0" ?><svg class="feather feather-align-justify" fill="none" height="24"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="21" x2="3" y1="10" y2="10" />
+                                <line x1="21" x2="3" y1="6" y2="6" />
+                                <line x1="21" x2="3" y1="14" y2="14" />
+                                <line x1="21" x2="3" y1="18" y2="18" />
+                            </svg>
+                        </button>
+                    </li>
+                    <li class="time-limit-btn">
+                        <button data-tooltip="Time limit">
+                            <?xml version="1.0" ?><svg class="feather feather-clock" fill="none" height="24"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                        </button>
+                    </li>
+                    <li class="full-width-btn">
+                        <button data-tooltip="Full width">
+                            <?xml version="1.0" ?><svg class="feather feather-maximize-2" fill="none" height="24"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="15 3 21 3 21 9" />
+                                <polyline points="9 21 3 21 3 15" />
+                                <line x1="21" x2="14" y1="3" y2="10" />
+                                <line x1="3" x2="10" y1="21" y2="14" />
+                            </svg>
+                        </button>
+                    </li>
+                    <li class="change-font-btn">
+                        <button data-tooltip="Change font">
+                            <?xml version="1.0" ?><svg class="feather feather-type" fill="none" height="24"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="4 7 4 4 20 4 20 7" />
+                                <line x1="9" x2="15" y1="20" y2="20" />
+                                <line x1="12" x2="12" y1="4" y2="20" />
+                            </svg>
+                        </button>
+                    </li>
+                    <li class="lock-btn">
+                        <button data-tooltip="Lock page">
+                            <?xml version="1.0" ?><svg class="feather feather-unlock" fill="none" height="24"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <rect height="11" rx="2" ry="2" width="18" x="3" y="11" />
+                                <path d="M7 11V7a5 5 0 0 1 9.9-1" />
+                            </svg>
+                        </button>
+                    </li>
+                    <li class="save-btn">
+                        <button data-tooltip="Save">
+                            <?xml version="1.0" ?><svg class="feather feather-save" fill="none" height="24"
+                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                                <polyline points="17 21 17 13 7 13 7 21" />
+                                <polyline points="7 3 7 8 15 8" />
+                            </svg>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
-        <textarea name="notepad" id="notepad"></textarea>
+        <textarea name="notepad" id="notepad" placeholder="What are your thoughts?"></textarea>
     </div>
 
     <script src="script.js"></script>
