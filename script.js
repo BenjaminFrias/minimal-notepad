@@ -12,24 +12,26 @@ const limitText = document.querySelector(".input-container p");
 const limitInput = limitContainer.querySelector("#limit-input");
 const submitBtn = limitContainer.querySelector("#submit-input");
 
-let wordCount = 0;
+const resultNumber = document.querySelector(".results p span");
+const resultsDiv = document.querySelector(".results");
+
 let wordLimit = 0;
 let timeLimit = 0;
+let wordCount = 0;
+let count;
 
 textArea.focus();
 
 textArea.addEventListener("click", () => {
+    toogleInput();
     limitContainer.classList.remove("expanded");
     arrowIcon.classList.remove("expanded");
     nav.classList.remove("expanded");
 });
 
-textArea.addEventListener("keyup", (key) => {
-    for (let i = 0; i < 1; i++) {
-        if (key.key == " ") {
-            wordCount += 1;
-        }
-    }
+textArea.addEventListener("keyup", () => {
+    wordCount = countWords(textArea.value);
+    resultNumber.innerHTML = wordCount;
 });
 
 arrowIcon.addEventListener("click", () => {
@@ -47,6 +49,23 @@ wordBtn.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", () => {
-    limitContainer.classList.toggle("expanded");
-    wordLimit = limitInput.value;
+    if (limitInput.value > 1) {
+        wordLimit = limitInput.value;
+        resultsDiv.classList.add("expanded");
+        limitContainer.classList.toggle("expanded");
+    }
+    else {
+        alert("Please enter a valid number!")
+    }
 });
+
+
+function countWords(str) {
+    // let words = str.split(" ").length;
+    const words = str.trim().split(/\s+/).length;
+    return str.length == 0 ? 0 : words;
+}
+
+function toogleInput() {
+    
+}

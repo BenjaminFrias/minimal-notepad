@@ -12,6 +12,12 @@
     padding: 0;
 }
 
+p {
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
 textarea {
     position: absolute;
     z-index: 1;
@@ -123,31 +129,31 @@ li button {
     border: none;
     background: transparent;
     color: var(--light-gray);
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-weight: 300;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
 }
 
 li button:hover {
     scale: 1.2;
     color: rgb(255, 255, 255);
-    transition: all .2s ease;
+    transition: all 0.2s ease;
 }
 
-li button[data-tooltip]:hover::after { 
-    content: attr(data-tooltip); 
+li button[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
     position: absolute;
     left: 120%;
     white-space: nowrap;
     border-radius: 5px;
-    background-color: #57526d; 
-    padding: 5px; 
-    font-size: 10px;  
+    background-color: #57526d;
+    padding: 5px;
+    font-size: 10px;
     color: var(--light-gray);
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
     font-weight: 500;
     font-style: italic;
-} 
+}
 
 li button svg {
     width: 50%;
@@ -171,18 +177,12 @@ li button svg {
     background-color: var(--dark-gray);
     border-radius: 15px;
     padding: 10px;
-    transition: scale .1s ease-in-out;
+    transition: scale 0.1s ease-in-out;
 }
 
 .input-container.expanded {
-    transition: scale .1s ease-in-out;
+    transition: scale 0.1s ease-in-out;
     scale: 1;
-}
-
-.input-container * {
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    font-size: .8rem;
 }
 
 .input-container p {
@@ -200,11 +200,13 @@ li button svg {
     background-color: transparent;
     color: white;
     border: none;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-weight: 600;
 }
 
 .input-container input[type="submit"]:hover {
-    transition: all .2s ease;
+    transition: all 0.2s ease;
     scale: 1.1;
 }
 
@@ -224,6 +226,27 @@ li button svg {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* RESULTS */
+
+.results {
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    left: -30%;
+    transition: left 200ms ease;
+}
+
+.results.expanded {
+    top: 93%;
+    left: 3%;
+    transition: left 200ms ease;
+}
+
+.results p {
+    font-weight: 400;
+    color: #555;
 }
