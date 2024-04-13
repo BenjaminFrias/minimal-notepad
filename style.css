@@ -147,10 +147,83 @@ li button[data-tooltip]:hover::after {
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     font-weight: 500;
     font-style: italic;
-  } 
+} 
 
 li button svg {
     width: 50%;
     height: 50%;
 }
 
+/* INPUT */
+
+.input-container {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    top: 13%;
+    left: 6%;
+    scale: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    width: 12vw;
+    background-color: var(--dark-gray);
+    border-radius: 15px;
+    padding: 10px;
+    transition: scale .1s ease-in-out;
+}
+
+.input-container.expanded {
+    transition: scale .1s ease-in-out;
+    scale: 1;
+}
+
+.input-container * {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: .8rem;
+}
+
+.input-container p {
+    color: var(--light-gray);
+}
+
+.input-container .inputs {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    height: 30px;
+}
+
+.input-container input[type="submit"] {
+    background-color: transparent;
+    color: white;
+    border: none;
+    transition: all .2s ease;
+}
+
+.input-container input[type="submit"]:hover {
+    transition: all .2s ease;
+    scale: 1.1;
+}
+
+.input-container input[type="number"] {
+    width: 50%;
+    border: none;
+    background-color: #49455c;
+    border-bottom: 2px solid white;
+    color: white;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.input-container input[type="number"]::placeholder {
+    color: var(--light-gray);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
