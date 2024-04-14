@@ -258,10 +258,22 @@ input::-webkit-inner-spin-button {
     color: #555;
 }
 
-.congrats {
-    width: 100px;
-    height: 100px;
-    background: red;
+#congrats {
+    position: absolute;
+    top: 92%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    color: #555;
+    font-style: italic;
+    margin: 0 auto;
+    text-align: center;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+#congrats.display {
+    opacity: 1;
 }
 
 /* PROGRESS BAR */

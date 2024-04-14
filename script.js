@@ -13,6 +13,7 @@ const progressStatus = document.querySelector("#progress-status");
 const progressBar = document.querySelector("#progress-bar");
 const limitInput = limitContainer.querySelector("#limit-input");
 const submitBtn = limitContainer.querySelector("#submit-input");
+const congrats = document.querySelector("#congrats");
 
 const resultNumber = document.querySelector(".results p span");
 const resultsDiv = document.querySelector(".results");
@@ -33,7 +34,11 @@ textArea.addEventListener("keyup", () => {
     wordCount > 0
         ? resultsDiv.classList.add("expanded")
         : resultsDiv.classList.remove("expanded");
-    updateProgressBar(wordCount);
+
+    if (wordLimit > 0) {
+        updateProgressBar(wordCount);
+    }
+
     resultNumber.innerHTML = wordCount;
 });
 
@@ -71,4 +76,10 @@ function updateProgressBar(currentWords) {
     const percentage = (currentWords / wordLimit) * 100;
     const width = Math.min(percentage, 100);
     progressBar.style.width = `${width}%`;
+
+    if (width == 100) {
+        congrats.classList.add("display");
+    } else {
+        congrats.classList.remove("display");
+    }
 }
