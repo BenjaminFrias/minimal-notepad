@@ -1,5 +1,4 @@
 /* GENERAL */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
     --light-gray: rgb(226, 226, 226);
@@ -152,7 +151,7 @@ nav.expanded {
         right: 0;
         margin-left: auto;
     }
-    
+
     nav.expanded {
         top: 0vh;
         right: 0;
@@ -183,7 +182,7 @@ nav.expanded {
         background-color: #d6d6d6;
         scale: 1.4;
     }
-    
+
     .arrow svg {
         fill: var(--gray);
     }
@@ -371,4 +370,66 @@ input::-webkit-inner-spin-button {
     height: 3px;
     background-color: var(--purple);
     transition: width 300ms ease;
+}
+
+/* FONT CONTAINER */
+
+.fonts-container {
+    position: absolute;
+    display: flex;
+    z-index: 2;
+    justify-content: space-evenly;
+    align-items: center;
+    background: var(--dark-gray);
+    border-radius: 15px;
+    width: 12vw;
+    height: 60px;
+    top: 35%;
+    left: -10%;
+    opacity: 0;
+    transition: all 300ms ease;
+}
+
+.fonts-container.expanded {
+    top: 35%;
+    left: 6%;
+    opacity: 1;
+    transition: all 300ms ease;
+}
+
+.fonts-container button {
+    width: 25%;
+    height: 50%;
+    border-radius: 15px;
+    color: #d6d6d6;
+    font-size: 1.2rem;
+    border: none;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+    transition: all 300ms ease;
+    background: transparent;
+}
+
+.fonts-container button:hover {
+    transition: all 300ms ease;
+    background-color: #49455c;
+    scale: 1.2;
+}
+
+.fonts-container button[data-font="serif"] {
+    font-family: "IBM Plex Serif", "Times New Roman", Times, serif;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.fonts-container button[data-font="sans-serif"] {
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.fonts-container button[data-font="monospace"] {
+    font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+
 }

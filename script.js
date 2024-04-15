@@ -17,12 +17,15 @@ const congrats = document.querySelector("#congrats");
 const resultNumber = document.querySelector(".results p span.number");
 const resultType = document.querySelector(".results p span.limit-type");
 const resultsDiv = document.querySelector(".results");
+const fontContainer = document.querySelector(".fonts-container");
+const fontOptionsBtns = document.querySelectorAll(".font-btn");
 
 textArea.focus();
 
 // Remove nav if click in Textarea
 textArea.addEventListener("click", () => {
     limitContainer.classList.remove("expanded");
+    fontContainer.classList.remove("expanded");
     arrowIcon.classList.remove("expanded");
     nav.classList.remove("expanded");
 });
@@ -61,6 +64,7 @@ arrowIcon.addEventListener("click", () => {
 
     if (!arrowIcon.classList.contains("expanded")) {
         limitContainer.classList.remove("expanded");
+        fontContainer.classList.remove("expanded");
     }
 });
 
@@ -98,15 +102,34 @@ lockBtn.addEventListener("click", () => {
 
 saveBtn.addEventListener("click", () => {
     const link = document.createElement("a");
-    const file = new Blob([textArea.value], { type: 'text/plain' });
+    const file = new Blob([textArea.value], { type: "text/plain" });
     link.href = URL.createObjectURL(file);
     link.download = "notes.txt";
 
     if (window.confirm("Do you want to save the file?")) {
         link.click();
     }
-    
+
     URL.revokeObjectURL(link.href);
+});
+
+fontBtn.addEventListener("click", () => {
+    fontContainer.classList.toggle("expanded");
+    fontOptionsBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            switch (btn.dataset.font) {
+                case "serif":
+                    textArea.style.fontFamily = '"IBM Plex Serif", "Times New Roman", Times, serif';
+                    break;
+                case "sans-serif":
+                    textArea.style.fontFamily = '"Inter", Arial, Helvetica, sans-serif';
+                    break;
+                case "monospace":
+                    textArea.style.fontFamily = '"IBM Plex Mono", "Courier New", Courier, monospace';
+                    break;
+            }
+        });
+    });
 });
 
 function countWords(str) {
