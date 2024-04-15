@@ -47,7 +47,7 @@ textarea.expanded {
 textarea.locked {
     background-color: var(--dark-gray);
     font-size: 1rem;
-    color: white;
+    color: #d6d6d6;
 }
 
 textarea::placeholder {
@@ -129,6 +129,72 @@ nav {
 nav.expanded {
     transition: all 0.5s ease;
     left: 2vh;
+}
+
+@media (max-width: 500px) {
+    textarea {
+        padding: 12vh 15%;
+    }
+
+    textarea.expanded {
+        padding: 12vh 8%;
+        transition: all 300ms ease;
+    }
+
+    nav {
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        min-height: 9vh;
+        width: 85vw;
+        top: -10vh;
+        right: 0;
+        margin-left: auto;
+    }
+    
+    nav.expanded {
+        top: 0vh;
+        right: 0;
+        margin-left: auto;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 100%;
+    }
+
+    nav li button {
+        width: 6vh;
+        height: 6vh;
+    }
+
+    li button svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .arrow {
+        rotate: 90deg;
+        background-color: #d6d6d6;
+        scale: 1.4;
+    }
+    
+    .arrow svg {
+        fill: var(--gray);
+    }
+
+    .arrow:active {
+        scale: 1.4;
+    }
+
+    .arrow.expanded {
+        rotate: 270deg;
+    }
 }
 
 /* BUTTONS */
@@ -232,7 +298,7 @@ li button svg {
     text-align: center;
     font-size: 1rem;
     font-weight: 600;
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 .input-container input[type="number"]::placeholder {
