@@ -78,7 +78,7 @@ timeBtn.addEventListener("click", () => {
     submitBtn.addEventListener("click", () => {
         setLimit("time");
         startCountdown(timeLimit);
-        resultType.textContent = "Minutes"
+        resultType.textContent = "Minutes";
     });
 });
 
@@ -89,12 +89,24 @@ fullWidthBtn.addEventListener("click", () => {
 lockBtn.addEventListener("click", () => {
     if (textArea.classList.contains("locked")) {
         textArea.removeAttribute("disabled", "");
-        textArea.classList.toggle("locked")
-    }
-    else {
+        textArea.classList.toggle("locked");
+    } else {
         textArea.setAttribute("disabled", "");
-        textArea.classList.toggle("locked")
+        textArea.classList.toggle("locked");
     }
+});
+
+saveBtn.addEventListener("click", () => {
+    const link = document.createElement("a");
+    const file = new Blob([textArea.value], { type: 'text/plain' });
+    link.href = URL.createObjectURL(file);
+    link.download = "notes.txt";
+
+    if (window.confirm("Do you want to save the file?")) {
+        link.click();
+    }
+    
+    URL.revokeObjectURL(link.href);
 });
 
 function countWords(str) {
@@ -139,13 +151,13 @@ function setLimit(type) {
 
 function startCountdown(minutes) {
     const seconds = minutes * 60;
-    
+
     let remainingTime = seconds;
     let progressTime = 0;
     const intervalId = setInterval(() => {
         const minutesLeft = Math.floor(remainingTime / 60);
         resultNumber.textContent = minutesLeft;
-        
+
         updateProgressBar(progressTime, seconds);
         resultNumber.textContent = `${minutesLeft}`;
 
@@ -156,6 +168,5 @@ function startCountdown(minutes) {
 
         remainingTime--;
         progressTime++;
-
     }, 1000);
 }
