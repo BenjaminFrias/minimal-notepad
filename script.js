@@ -3,7 +3,7 @@ const nav = document.querySelector("nav");
 const arrowIcon = document.querySelector(".arrow");
 const wordBtn = document.querySelector(".word-limit-btn");
 const timeBtn = document.querySelector(".time-limit-btn");
-const widthBtn = document.querySelector(".full-width-btn");
+const fullWidthBtn = document.querySelector(".full-width-btn");
 const fontBtn = document.querySelector(".change-font-btn");
 const lockBtn = document.querySelector(".lock-btn");
 const saveBtn = document.querySelector(".save-btn");
@@ -14,7 +14,6 @@ const progressBar = document.querySelector("#progress-bar");
 const limitInput = limitContainer.querySelector("#limit-input");
 const submitBtn = limitContainer.querySelector("#submit-input");
 const congrats = document.querySelector("#congrats");
-
 const resultNumber = document.querySelector(".results p span");
 const resultsDiv = document.querySelector(".results");
 
@@ -22,12 +21,14 @@ let wordLimit = 0;
 
 textArea.focus();
 
+// Remove nav if click in Textarea
 textArea.addEventListener("click", () => {
     limitContainer.classList.remove("expanded");
     arrowIcon.classList.remove("expanded");
     nav.classList.remove("expanded");
 });
 
+// Show word count if is > 0
 textArea.addEventListener("keyup", () => {
     wordCount = countWords(textArea.value);
 
@@ -36,12 +37,13 @@ textArea.addEventListener("keyup", () => {
         : resultsDiv.classList.remove("expanded");
 
     if (wordLimit > 0) {
-        updateProgressBar(wordCount);
+        updateProgressBar(wordCount, wordLimit);
     }
 
     resultNumber.innerHTML = wordCount;
 });
 
+// Expand arrow
 arrowIcon.addEventListener("click", () => {
     arrowIcon.classList.toggle("expanded");
     nav.classList.toggle("expanded");
@@ -51,11 +53,12 @@ arrowIcon.addEventListener("click", () => {
     }
 });
 
+// Show word input
 wordBtn.addEventListener("click", () => {
-    limitContainer.classList.toggle("expanded");
-    limitText.innerHTML = "Word limit:";
+    displayLimitInput("Word Limit: ");
 });
 
+// Get the limit value of input
 submitBtn.addEventListener("click", () => {
     if (limitInput.value > 1) {
         wordLimit = limitInput.value;
@@ -66,14 +69,17 @@ submitBtn.addEventListener("click", () => {
     }
 });
 
+fullWidthBtn.addEventListener("click", () => {
+    textArea.classList.toggle("expanded");
+});
+
 function countWords(str) {
-    // let words = str.split(" ").length;
     const words = str.trim().split(/\s+/).length;
     return str.length == 0 ? 0 : words;
 }
 
-function updateProgressBar(currentWords) {
-    const percentage = (currentWords / wordLimit) * 100;
+function updateProgressBar(current, limit) {
+    const percentage = (current / limit) * 100;
     const width = Math.min(percentage, 100);
     progressBar.style.width = `${width}%`;
 
@@ -82,4 +88,9 @@ function updateProgressBar(currentWords) {
     } else {
         congrats.classList.remove("display");
     }
+}
+
+function displayLimitInput(message) {
+    limitContainer.classList.toggle("expanded");
+    limitText.innerHTML = message;
 }

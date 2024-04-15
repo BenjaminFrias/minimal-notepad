@@ -23,7 +23,7 @@ textarea {
     position: absolute;
     z-index: 1;
     box-sizing: border-box;
-    padding: 15vh 20%;
+    padding: 15vh 25%;
     width: 100%;
     min-height: 100vh;
     font-size: 1.1rem;
@@ -36,6 +36,12 @@ textarea {
     color: var(--dark-gray);
     line-height: 2.2rem;
     cursor: default;
+    transition: all 300ms ease;
+}
+
+textarea.expanded {
+    padding: 15vh 16%;
+    transition: all 300ms ease;
 }
 
 textarea::placeholder {
@@ -255,7 +261,7 @@ input::-webkit-inner-spin-button {
 
 .results p {
     font-weight: 400;
-    color: #555;
+    color: #838383;
 }
 
 #congrats {
@@ -290,4 +296,5 @@ input::-webkit-inner-spin-button {
     width: 0%;
     height: 3px;
     background-color: var(--purple);
+    transition: width 300ms ease;
 }
