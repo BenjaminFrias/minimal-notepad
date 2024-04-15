@@ -86,6 +86,17 @@ fullWidthBtn.addEventListener("click", () => {
     textArea.classList.toggle("expanded");
 });
 
+lockBtn.addEventListener("click", () => {
+    if (textArea.classList.contains("locked")) {
+        textArea.removeAttribute("disabled", "");
+        textArea.classList.toggle("locked")
+    }
+    else {
+        textArea.setAttribute("disabled", "");
+        textArea.classList.toggle("locked")
+    }
+});
+
 function countWords(str) {
     const words = str.trim().split(/\s+/).length;
     return str.length == 0 ? 0 : words;

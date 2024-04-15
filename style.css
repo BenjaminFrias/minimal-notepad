@@ -44,6 +44,12 @@ textarea.expanded {
     transition: all 300ms ease;
 }
 
+textarea.locked {
+    background-color: var(--dark-gray);
+    font-size: 1rem;
+    color: white;
+}
+
 textarea::placeholder {
     color: var(--gray);
 }
