@@ -130,11 +130,12 @@ function startCountdown(minutes) {
     const seconds = minutes * 60;
     
     let remainingTime = seconds;
+    let progressTime = 0;
     const intervalId = setInterval(() => {
         const minutesLeft = Math.floor(remainingTime / 60);
         resultNumber.textContent = minutesLeft;
         
-        updateProgressBar(remainingTime, seconds);
+        updateProgressBar(progressTime, seconds);
         resultNumber.textContent = `${minutesLeft}`;
 
         if (remainingTime <= 0) {
@@ -143,6 +144,7 @@ function startCountdown(minutes) {
         }
 
         remainingTime--;
+        progressTime++;
 
     }, 1000);
 }
