@@ -14,10 +14,9 @@ const progressBar = document.querySelector("#progress-bar");
 const limitInput = limitContainer.querySelector("#limit-input");
 const submitBtn = limitContainer.querySelector("#submit-input");
 const congrats = document.querySelector("#congrats");
-const resultNumber = document.querySelector(".results p span");
+const resultNumber = document.querySelector(".results p span.number");
+const resultType = document.querySelector(".results p span.limit-type");
 const resultsDiv = document.querySelector(".results");
-
-let wordLimit = 0;
 
 textArea.focus();
 
@@ -29,18 +28,30 @@ textArea.addEventListener("click", () => {
 });
 
 // Show word count if is > 0
+let wordIsActive = false;
+let timeIsActive = false;
+let wordLimit = 0;
+let timeLimit = 0;
+let wordCount;
+let timeInterval;
+let started = false;
+
 textArea.addEventListener("keyup", () => {
     wordCount = countWords(textArea.value);
 
-    wordCount > 0
-        ? resultsDiv.classList.add("expanded")
-        : resultsDiv.classList.remove("expanded");
-
-    if (wordLimit > 0) {
-        updateProgressBar(wordCount, wordLimit);
+    if (wordCount > 0) {
+        resultsDiv.classList.add("expanded");
+    } else {
+        resultsDiv.classList.remove("expanded");
     }
 
-    resultNumber.innerHTML = wordCount;
+    timeIsActive == false ? (resultNumber.innerHTML = wordCount) : 0;
+
+    if (wordIsActive) {
+        if (wordLimit > 0) {
+            updateProgressBar(wordCount, wordLimit);
+        }
+    }
 });
 
 // Expand arrow
@@ -56,17 +67,19 @@ arrowIcon.addEventListener("click", () => {
 // Show word input
 wordBtn.addEventListener("click", () => {
     displayLimitInput("Word Limit: ");
+    submitBtn.addEventListener("click", () => {
+        setLimit("word");
+    });
 });
 
-// Get the limit value of input
-submitBtn.addEventListener("click", () => {
-    if (limitInput.value > 1) {
-        wordLimit = limitInput.value;
-        limitContainer.classList.toggle("expanded");
-        progressStatus.style.opacity = "1";
-    } else {
-        alert("Please enter a valid number!");
-    }
+// Show time input
+timeBtn.addEventListener("click", () => {
+    displayLimitInput("Time Limit: ");
+    submitBtn.addEventListener("click", () => {
+        setLimit("time");
+        startCountdown(timeLimit);
+        resultType.textContent = "Minutes"
+    });
 });
 
 fullWidthBtn.addEventListener("click", () => {
@@ -93,4 +106,43 @@ function updateProgressBar(current, limit) {
 function displayLimitInput(message) {
     limitContainer.classList.toggle("expanded");
     limitText.innerHTML = message;
+}
+
+function setLimit(type) {
+    if (limitInput.value > 1) {
+        if (type == "word") {
+            wordLimit = limitInput.value;
+            wordIsActive = true;
+            timeIsActive = false;
+        } else {
+            timeLimit = limitInput.value;
+            timeIsActive = true;
+            wordIsActive = false;
+        }
+        limitContainer.classList.toggle("expanded");
+        progressStatus.style.opacity = "1";
+    } else {
+        alert("Please enter a valid number!");
+    }
+}
+
+function startCountdown(minutes) {
+    const seconds = minutes * 60;
+    
+    let remainingTime = seconds;
+    const intervalId = setInterval(() => {
+        const minutesLeft = Math.floor(remainingTime / 60);
+        resultNumber.textContent = minutesLeft;
+        
+        updateProgressBar(remainingTime, seconds);
+        resultNumber.textContent = `${minutesLeft}`;
+
+        if (remainingTime <= 0) {
+            clearInterval(intervalId);
+            resultNumber.textContent = "Time's up!";
+        }
+
+        remainingTime--;
+
+    }, 1000);
 }

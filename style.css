@@ -225,6 +225,8 @@ li button svg {
     color: white;
     text-align: center;
     font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .input-container input[type="number"]::placeholder {
