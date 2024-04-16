@@ -19,6 +19,7 @@ const resultType = document.querySelector(".results p span.limit-type");
 const resultsDiv = document.querySelector(".results");
 const fontContainer = document.querySelector(".fonts-container");
 const fontOptionsBtns = document.querySelectorAll(".font-btn");
+const lightDarkBtn = document.querySelector(".light-dark-btn button");
 
 textArea.focus();
 
@@ -88,6 +89,7 @@ timeBtn.addEventListener("click", () => {
 
 fullWidthBtn.addEventListener("click", () => {
     textArea.classList.toggle("expanded");
+    toggleFullScreen();
 });
 
 lockBtn.addEventListener("click", () => {
@@ -119,22 +121,91 @@ fontBtn.addEventListener("click", () => {
         btn.addEventListener("click", () => {
             switch (btn.dataset.font) {
                 case "serif":
-                    textArea.style.fontFamily = '"IBM Plex Serif", "Times New Roman", Times, serif';
+                    textArea.style.fontFamily =
+                        '"IBM Plex Serif", "Times New Roman", Times, serif';
                     break;
                 case "sans-serif":
-                    textArea.style.fontFamily = '"Inter", Arial, Helvetica, sans-serif';
+                    textArea.style.fontFamily =
+                        '"Inter", Arial, Helvetica, sans-serif';
                     break;
                 case "monospace":
-                    textArea.style.fontFamily = '"IBM Plex Mono", "Courier New", Courier, monospace';
+                    textArea.style.fontFamily =
+                        '"IBM Plex Mono", "Courier New", Courier, monospace';
                     break;
             }
         });
     });
 });
 
+// Light and dark mode
+const iconSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+const iconPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+iconSvg.setAttribute("fill", "none");
+iconSvg.setAttribute("viewBox", "0 0 512 512");
+/*
+<?xml version="1.0" ?>
+<svg height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
+<title/><path d="M160,136c0-30.62,4.51-61.61,16-88C99.57,81.27,48,159.32,48,248c0,1
+19.29,96.71,216,216,216,88.68,0,166.73-51.57,200-128-26.39,11.49-57.38,16-88,16C256.71,352,160,255.29,160,136Z"
+ style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg>
+
+*/
+
+const day = document.querySelector(".light-dark-btn button svg.feather-sun");
+const night = document.querySelector(".light-dark-btn button svg.feather-moon");
+lightDarkBtn.addEventListener("click", () => {
+    textArea.classList.toggle("light-dark");
+
+    if (textArea.classList.contains("light-dark")) {
+        night.style.display = "none";
+        day.style.display = "block";
+    }
+    else {
+        night.style.display = "block";
+        day.style.display = "none";
+    }
+
+});
+
 function countWords(str) {
     const words = str.trim().split(/\s+/).length;
     return str.length == 0 ? 0 : words;
+}
+
+function toggleFullScreen() {
+    if (
+        (document.fullScreenElement && document.fullScreenElement !== null) ||
+        (!document.mozFullScreen && !document.webkitIsFullScreen)
+    ) {
+        if (document.documentElement.requestFullScreen) {
+            document.documentElement.requestFullScreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+            /* Firefox */
+            document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullScreen) {
+            /* Chrome, Safari & Opera */
+            document.documentElement.webkitRequestFullScreen(
+                Element.ALLOW_KEYBOARD_INPUT
+            );
+        } else if (document.msRequestFullscreen) {
+            /* IE/Edge */
+            document.documentElement.msRequestFullscreen();
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            /* Firefox */
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            /* Chrome, Safari and Opera */
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            /* IE/Edge */
+            document.msExitFullscreen();
+        }
+    }
 }
 
 function updateProgressBar(current, limit) {
